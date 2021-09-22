@@ -39,18 +39,22 @@ public class App
         //         () -> log.info("Completed")
         //     );
 
-        // Subscribers of this mono will always get the initial value of a
-        var just = Mono.just(a);
+        // // Subscribers of this mono will always get the initial value of a
+        // var just = Mono.just(a);
 
-        // Mono.defer will generate a new Mono.just for each subscriber rerunning the lambda function
-        var defer = Mono.defer(() -> Mono.just(a));
+        // // Mono.defer will generate a new Mono.just for each subscriber rerunning the lambda function
+        // var defer = Mono.defer(() -> Mono.just(a));
 
-        just.subscribe(v -> System.out.println("just: " + v));
-        defer.subscribe(v -> System.out.println("defer: " + v));
+        // just.subscribe(v -> System.out.println("just: " + v));
+        // defer.subscribe(v -> System.out.println("defer: " + v));
 
-        a = 7;
+        // a = 7;
 
-        just.subscribe(v -> System.out.println("just: " + v));
-        defer.subscribe(v -> System.out.println("defer: " + v));
+        // just.subscribe(v -> System.out.println("just: " + v));
+        // defer.subscribe(v -> System.out.println("defer: " + v));
+
+        Flux.range(2010, 10)
+            .index()
+            .subscribe(v -> log.info("[{}] = {}", v.getT1(), v.getT2()));
     }
 }
