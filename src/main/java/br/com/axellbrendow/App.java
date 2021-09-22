@@ -12,7 +12,11 @@ public class App
         // Mono.just("Hello World!")
         //     .subscribe(log::info);
 
-        Flux.just(1, 2, 3, 4, 5)
+        // Flux.just(1, 2, 3, 4, 5)
+        //     .subscribe(i -> log.info("num: {}", i));
+
+        Flux.range(1, 5)
+            .repeat()
             .subscribe(i -> log.info("num: {}", i));
     }
 }
