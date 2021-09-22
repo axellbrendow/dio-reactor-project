@@ -58,14 +58,18 @@ public class App
         //     .index()
         //     .subscribe(v -> log.info("[{}] = {}", v.getT1(), v.getT2()));
 
-        Flux.range(2010, 10)
-            .timestamp()
-            .index()
-            .subscribe(v -> {
-                Long index = v.getT1();
-                Instant isoDate = Instant.ofEpochMilli(v.getT2().getT1());
-                Integer value = v.getT2().getT2();
-                log.info("[{}] = Date: {}, Value: {}", index, isoDate, value);
-            });
+        // Flux.range(2010, 10)
+        //     .timestamp()
+        //     .index()
+        //     .subscribe(v -> {
+        //         Long index = v.getT1();
+        //         Instant isoDate = Instant.ofEpochMilli(v.getT2().getT1());
+        //         Integer value = v.getT2().getT2();
+        //         log.info("[{}] = Date: {}, Value: {}", index, isoDate, value);
+        //     });
+
+        Flux.concat(Mono.just(1), Mono.just(2))
+            .reduce(0, Integer::sum)
+            .subscribe(v -> log.info("v = {}", v));
     }
 }
