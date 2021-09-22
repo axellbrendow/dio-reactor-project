@@ -25,8 +25,16 @@ public class App
         //     .repeat()
         //     .subscribe(v -> log.info("just or empty: {}", v));
 
-        Flux.from(Mono.justOrEmpty(Optional.ofNullable("Hello World")))
+        // Flux.from(Mono.justOrEmpty(Optional.ofNullable("Hello World")))
+        //     .repeat()
+        //     .subscribe(v -> log.info("just or empty: {}", v));
+
+        Flux.from(Mono.error(new RuntimeException("test")))
             .repeat()
-            .subscribe(v -> log.info("just or empty: {}", v));
+            .subscribe(
+                v -> log.info("just or empty: {}", v),
+                error -> log.error("Error: {}", error),
+                () -> log.info("Completed")
+            );
     }
 }
