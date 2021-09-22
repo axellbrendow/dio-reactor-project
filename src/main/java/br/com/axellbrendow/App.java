@@ -1,5 +1,6 @@
 package br.com.axellbrendow;
 
+import java.time.Instant;
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
@@ -53,8 +54,18 @@ public class App
         // just.subscribe(v -> System.out.println("just: " + v));
         // defer.subscribe(v -> System.out.println("defer: " + v));
 
+        // Flux.range(2010, 10)
+        //     .index()
+        //     .subscribe(v -> log.info("[{}] = {}", v.getT1(), v.getT2()));
+
         Flux.range(2010, 10)
+            .timestamp()
             .index()
-            .subscribe(v -> log.info("[{}] = {}", v.getT1(), v.getT2()));
+            .subscribe(v -> {
+                Long index = v.getT1();
+                Instant isoDate = Instant.ofEpochMilli(v.getT2().getT1());
+                Integer value = v.getT2().getT2();
+                log.info("[{}] = Date: {}, Value: {}", index, isoDate, value);
+            });
     }
 }
