@@ -14,24 +14,30 @@ public class App
 
     public static void main( String[] args )
     {
+        // -------------------------------------------------------------------------------
         // Mono.just("Hello World!")
         //     .subscribe(log::info);
 
+        // -------------------------------------------------------------------------------
         // Flux.just(1, 2, 3, 4, 5)
         //     .subscribe(i -> log.info("num: {}", i));
 
+        // -------------------------------------------------------------------------------
         // Flux.range(1, 5)
         //     .repeat()
         //     .subscribe(i -> log.info("num: {}", i));
 
+        // -------------------------------------------------------------------------------
         // Flux.from(Mono.justOrEmpty(Optional.ofNullable(null)))
         //     .repeat()
         //     .subscribe(v -> log.info("just or empty: {}", v));
 
+        // -------------------------------------------------------------------------------
         // Flux.from(Mono.justOrEmpty(Optional.ofNullable("Hello World")))
         //     .repeat()
         //     .subscribe(v -> log.info("just or empty: {}", v));
 
+        // -------------------------------------------------------------------------------
         // Flux.from(Mono.error(new RuntimeException("test")))
         //     .repeat()
         //     .subscribe(
@@ -40,6 +46,7 @@ public class App
         //         () -> log.info("Completed")
         //     );
 
+        // -------------------------------------------------------------------------------
         // // Subscribers of this mono will always get the initial value of a
         // var just = Mono.just(a);
 
@@ -54,10 +61,12 @@ public class App
         // just.subscribe(v -> System.out.println("just: " + v));
         // defer.subscribe(v -> System.out.println("defer: " + v));
 
+        // -------------------------------------------------------------------------------
         // Flux.range(2010, 10)
         //     .index()
         //     .subscribe(v -> log.info("[{}] = {}", v.getT1(), v.getT2()));
 
+        // -------------------------------------------------------------------------------
         // Flux.range(2010, 10)
         //     .timestamp()
         //     .index()
@@ -68,6 +77,7 @@ public class App
         //         log.info("[{}] = Date: {}, Value: {}", index, isoDate, value);
         //     });
 
+        // -------------------------------------------------------------------------------
         Flux.concat(Mono.just(1), Mono.just(2))
             .reduce(0, Integer::sum)
             .subscribe(v -> log.info("v = {}", v));
